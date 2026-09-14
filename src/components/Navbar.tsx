@@ -31,52 +31,25 @@ export default function Navbar() {
   return (
     <header
       id="navbar"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        transition: 'background 0.3s, border-color 0.3s, backdrop-filter 0.3s',
-        background: scrolled
-          ? 'rgba(10, 9, 16, 0.85)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled
-          ? '1px solid rgba(255,255,255,0.07)'
-          : '1px solid transparent',
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[rgba(10,9,16,0.85)] backdrop-blur-md border-b border-white/10'
+          : 'bg-transparent border-b border-transparent'
+      }`}
     >
-      <nav
-        style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          padding: '0 1.5rem',
-          height: '68px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <nav className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
         {/* Logo */}
         <a
           href="#"
           id="navbar-logo"
-          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+          className="flex items-center no-underline"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
         >
           <BrandLogo height={34} />
         </a>
 
         {/* Desktop nav */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '2rem',
-          }}
-          className="desktop-nav"
-        >
+        <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -91,8 +64,7 @@ export default function Navbar() {
           <a
             href="#contact"
             id="navbar-cta"
-            className="btn-primary"
-            style={{ padding: '0.55rem 1.25rem', fontSize: '0.875rem' }}
+            className="btn-primary !px-5 !py-2 !text-sm"
             onClick={(e) => handleNavClick(e, '#contact')}
           >
             Solicitar Demo
@@ -104,15 +76,7 @@ export default function Navbar() {
           id="mobile-menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Abrir menú"
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--color-text-primary)',
-            cursor: 'pointer',
-            padding: '0.5rem',
-            display: 'none',
-          }}
-          className="mobile-menu-btn"
+          className="md:hidden bg-transparent border-none text-[var(--color-text-primary)] cursor-pointer p-2 flex items-center"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -122,22 +86,13 @@ export default function Navbar() {
       {menuOpen && (
         <div
           id="mobile-menu"
-          style={{
-            background: 'rgba(10, 9, 16, 0.97)',
-            backdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(255,255,255,0.07)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.25rem',
-          }}
+          className="md:hidden bg-[rgba(10,9,16,0.97)] backdrop-blur-xl border-t border-white/10 p-6 flex flex-col gap-5"
         >
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="nav-link"
-              style={{ fontSize: '1rem' }}
+              className="nav-link text-base"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
@@ -145,21 +100,13 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
-            className="btn-primary"
-            style={{ justifyContent: 'center' }}
+            className="btn-primary justify-center"
             onClick={(e) => handleNavClick(e, '#contact')}
           >
             Solicitar Demo
           </a>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
-        }
-      `}</style>
     </header>
   );
 }

@@ -51,96 +51,61 @@ const METHODOLOGY_STEPS = [
 
 export default function ValuePropSection() {
   return (
-    <section id="about" style={{ padding: '100px 1.5rem', background: 'var(--color-surface)', position: 'relative' }}>
+    <section id="about" className="py-24 px-6 bg-[var(--color-surface)] relative">
       {/* Top divider */}
-      <div className="section-divider" style={{ position: 'absolute', top: 0, left: 0, right: 0 }} />
+      <div className="section-divider absolute top-0 left-0 right-0" />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '4.5rem' }}>
-          <div style={{ marginBottom: '1rem' }}>
+        <div className="text-center mb-18">
+          <div className="mb-4">
             <span className="section-label">Nuestra Metodología</span>
           </div>
-          <h2
-            style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.1,
-              marginBottom: '1rem',
-            }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-4">
             Ingeniería con{' '}
             <span className="gradient-text-brand">responsabilidad técnica</span>
           </h2>
-          <p style={{ color: 'var(--color-text-secondary)', maxWidth: '560px', margin: '0 auto', lineHeight: 1.7 }}>
+          <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed text-base">
             Resolvemos requerimientos críticos donde el margen de error es mínimo.
             Cada decisión técnica está respaldada por experiencia real en sistemas de producción.
           </p>
         </div>
 
         {/* Pillars */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '5rem',
-          }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={pillar.id}
                 id={`pillar-${pillar.id}`}
-                style={{
-                  padding: '2rem',
-                  borderRadius: 'var(--radius-card)',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                  background: 'rgba(10, 9, 16, 0.5)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1rem',
-                }}
+                className="p-8 rounded-[var(--radius-card)] border border-white/5 bg-[rgba(10,9,16,0.5)] flex flex-col gap-4"
               >
                 <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center border"
                   style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '12px',
-                    background: `${pillar.iconColor}12`,
-                    border: `1px solid ${pillar.iconColor}25`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    backgroundColor: `${pillar.iconColor}12`,
+                    borderColor: `${pillar.iconColor}25`,
                   }}
                 >
                   <Icon size={24} color={pillar.iconColor} />
                 </div>
 
-                <h3
-                  style={{
-                    fontSize: '1.125rem',
-                    fontWeight: 700,
-                    letterSpacing: '-0.02em',
-                    color: 'var(--color-text-primary)',
-                  }}
-                >
+                <h3 className="text-lg font-bold tracking-tight text-[var(--color-text-primary)]">
                   {pillar.title}
                 </h3>
 
-                <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: 1.7, flexGrow: 1 }}>
+                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed flex-grow">
                   {pillar.description}
                 </p>
 
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <ul className="list-none p-0 m-0 flex flex-col gap-2">
                   {pillar.points.map((point) => (
                     <li
                       key={point}
-                      style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}
+                      className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]"
                     >
-                      <CheckCircle2 size={14} color={pillar.iconColor} style={{ flexShrink: 0 }} />
+                      <CheckCircle2 size={14} color={pillar.iconColor} className="shrink-0" />
                       {point}
                     </li>
                   ))}
@@ -151,67 +116,25 @@ export default function ValuePropSection() {
         </div>
 
         {/* Methodology steps */}
-        <div
-          style={{
-            borderRadius: 'var(--radius-card)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            background: 'rgba(52, 25, 84, 0.08)',
-            padding: '3rem 2.5rem',
-          }}
-        >
-          <h3
-            style={{
-              fontSize: '1.375rem',
-              fontWeight: 700,
-              letterSpacing: '-0.02em',
-              textAlign: 'center',
-              marginBottom: '2.5rem',
-              color: 'var(--color-text-primary)',
-            }}
-          >
+        <div className="rounded-[var(--radius-card)] border border-white/10 bg-[rgba(52,25,84,0.08)] p-10 md:p-12">
+          <h3 className="text-2xl font-bold tracking-tight text-center mb-10 text-[var(--color-text-primary)]">
             Cómo trabajamos
           </h3>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {METHODOLOGY_STEPS.map((step, index) => (
               <div
                 key={step.step}
                 id={`methodology-step-${index + 1}`}
-                style={{
-                  textAlign: 'center',
-                  position: 'relative',
-                }}
+                className="text-center relative"
               >
-                <div
-                  style={{
-                    fontSize: '0.7rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.15em',
-                    color: 'var(--color-brand-glow)',
-                    marginBottom: '0.75rem',
-                    fontFamily: 'var(--font-sans)',
-                  }}
-                >
+                <div className="text-xs font-extrabold tracking-widest text-[var(--color-brand-glow)] mb-3">
                   {step.step}
                 </div>
-                <h4
-                  style={{
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    color: 'var(--color-text-primary)',
-                    marginBottom: '0.5rem',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
+                <h4 className="text-base font-bold text-[var(--color-text-primary)] mb-2 tracking-tight">
                   {step.title}
                 </h4>
-                <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -221,7 +144,7 @@ export default function ValuePropSection() {
       </div>
 
       {/* Bottom divider */}
-      <div className="section-divider" style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />
+      <div className="section-divider absolute bottom-0 left-0 right-0" />
     </section>
   );
 }
