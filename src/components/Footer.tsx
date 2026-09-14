@@ -1,5 +1,6 @@
-import { Globe, Briefcase, ExternalLink } from 'lucide-react';
+import { Globe, Briefcase, Phone } from 'lucide-react';
 import BrandLogo from '../assets/logo/BrandLogo';
+import { getEnvironments } from '../helpers/getEnvironments';
 
 const FOOTER_LINKS = {
   Servicios: [
@@ -15,10 +16,15 @@ const FOOTER_LINKS = {
   ],
 };
 
+const getWhatsAppNumber = () => {
+  const phoneNumber = getEnvironments().VITE_WHATSAPP_NUMBER;
+  return phoneNumber;
+}
+
 const SOCIAL = [
-  { id: 'footer-linkedin', icon: Briefcase, label: 'LinkedIn', href: 'https://linkedin.com' },
-  { id: 'footer-twitter', icon: ExternalLink, label: 'Twitter / X', href: 'https://twitter.com' },
-  { id: 'footer-github', icon: Globe, label: 'GitHub', href: 'https://github.com' },
+  { id: 'footer-linkedin', icon: Briefcase, label: 'LinkedIn', href: 'https://www.linkedin.com/in/juan-ignacio-bisello-aa94281a7' },
+  { id: 'footer-github', icon: Globe, label: 'GitHub', href: 'https://github.com/juan-ignacio-bisello' },
+  { id: 'footer-whatsapp', icon: Phone, label: 'WhatsApp', href: `https://wa.me/${getWhatsAppNumber()}` },
 ];
 
 export default function Footer() {
@@ -45,7 +51,7 @@ export default function Footer() {
               className="inline-block mb-5 no-underline"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             >
-              <BrandLogo height={32} />
+              <BrandLogo height={70} />
             </a>
             <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed max-w-xs mb-6">
               Estudio de ingeniería de software especializado en sistemas de gestión empresarial,

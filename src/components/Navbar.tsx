@@ -4,7 +4,6 @@ import BrandLogo from '../assets/logo/BrandLogo';
 
 const NAV_LINKS = [
   { label: 'Servicios', href: '#services' },
-  { label: 'Soluciones SaaS', href: '#saas' },
   { label: 'Nosotros', href: '#about' },
   { label: 'Contacto', href: '#contact' },
 ];
@@ -31,11 +30,10 @@ export default function Navbar() {
   return (
     <header
       id="navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[rgba(10,9,16,0.85)] backdrop-blur-md border-b border-white/10'
-          : 'bg-transparent border-b border-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? 'bg-[rgba(10,9,16,0.85)] backdrop-blur-md border-b border-white/10'
+        : 'bg-transparent border-b border-transparent'
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
         {/* Logo */}
@@ -45,7 +43,7 @@ export default function Navbar() {
           className="flex items-center no-underline"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
         >
-          <BrandLogo height={34} />
+          <BrandLogo height={70} zoom={1.12} />
         </a>
 
         {/* Desktop nav */}
