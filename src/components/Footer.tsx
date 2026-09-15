@@ -1,25 +1,12 @@
 import { Globe, Briefcase, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import BrandLogo from '../assets/logo/BrandLogo';
 import { getEnvironments } from '../helpers/getEnvironments';
-
-const FOOTER_LINKS = {
-  Servicios: [
-    { label: 'ERP & Gestión Multisucursal', href: '#services' },
-    { label: 'Plataformas SaaS', href: '#saas' },
-    { label: 'Software a Medida', href: '#services' },
-    { label: 'Integraciones', href: '#services' },
-  ],
-  Empresa: [
-    { label: 'Nosotros', href: '#about' },
-    { label: 'Metodología', href: '#about' },
-    { label: 'Contacto', href: '#contact' },
-  ],
-};
 
 const getWhatsAppNumber = () => {
   const phoneNumber = getEnvironments().VITE_WHATSAPP_NUMBER;
   return phoneNumber;
-}
+};
 
 const SOCIAL = [
   { id: 'footer-linkedin', icon: Briefcase, label: 'LinkedIn', href: 'https://www.linkedin.com/in/juan-ignacio-bisello-aa94281a7' },
@@ -28,6 +15,22 @@ const SOCIAL = [
 ];
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    [t('footer.sections.services')]: [
+      { label: t('footer.links.erp'), href: '#services' },
+      { label: t('footer.links.saas'), href: '#saas' },
+      { label: t('footer.links.custom'), href: '#services' },
+      { label: t('footer.links.integrations'), href: '#services' },
+    ],
+    [t('footer.sections.company')]: [
+      { label: t('footer.links.about'), href: '#about' },
+      { label: t('footer.links.methodology'), href: '#about' },
+      { label: t('footer.links.contact'), href: '#contact' },
+    ],
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
@@ -54,8 +57,7 @@ export default function Footer() {
               <BrandLogo height={70} />
             </a>
             <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed max-w-xs mb-6">
-              Estudio de ingeniería de software especializado en sistemas de gestión empresarial,
-              plataformas SaaS y soluciones a medida de alta complejidad.
+              {t('footer.description')}
             </p>
             {/* Socials */}
             <div className="flex gap-3">
@@ -76,7 +78,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          {Object.entries(FOOTER_LINKS).map(([section, links]) => (
+          {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
               <h4 className="text-xs font-bold tracking-widest uppercase text-[var(--color-text-muted)] mb-5">
                 {section}
@@ -102,10 +104,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-7 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs text-[var(--color-text-muted)]">
           <p className="m-0">
-            © {new Date().getFullYear()} BISELIA. Todos los derechos reservados.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
           <p className="m-0">
-            Diseñado y desarrollado con precisión técnica.
+            {t('footer.tagline')}
           </p>
         </div>
       </div>

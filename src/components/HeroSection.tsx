@@ -1,11 +1,20 @@
 import { ArrowRight, ChevronDown, Zap } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  const stats = [
+    { value: t('hero.stats.uptime.value'), label: t('hero.stats.uptime.label') },
+    { value: t('hero.stats.latency.value'), label: t('hero.stats.latency.label') },
+    { value: t('hero.stats.production.value'), label: t('hero.stats.production.label') },
+  ];
 
   return (
     <section
@@ -26,22 +35,26 @@ export default function HeroSection() {
         <div className="animate-fade-in-up mb-7">
           <span className="section-label">
             <Zap size={13} />
-            Ingeniería de Software Empresarial
+            {t('hero.badge')}
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="animate-fade-in-up-delay-1 text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6">
-          Sistemas que{' '}
-          <span className="gradient-text-brand">escalan</span>
-          {' '}con tu empresa
+          {t('hero.titlePrefix')}{' '}
+          <span className="gradient-text-brand">{t('hero.titleHighlight')}</span>
+          {' '}{t('hero.titleSuffix')}
         </h1>
 
         {/* Subheadline */}
         <p className="animate-fade-in-up-delay-2 text-base sm:text-lg lg:text-xl text-[var(--color-text-secondary)] leading-relaxed max-w-2xl mx-auto mb-10 font-normal">
-          Diseñamos y construimos <strong className="text-[var(--color-text-primary)] font-semibold">plataformas SaaS</strong>, sistemas de gestión empresarial
-          y software a medida para empresas que exigen precisión,{' '}
-          <strong className="text-[var(--color-text-primary)] font-semibold">cero tiempo de inactividad</strong> y resultados medibles.
+          <Trans
+            i18nKey="hero.description"
+            components={{
+              1: <strong className="text-[var(--color-text-primary)] font-semibold" />,
+              3: <strong className="text-[var(--color-text-primary)] font-semibold" />,
+            }}
+          />
         </p>
 
         {/* CTAs */}
@@ -52,7 +65,7 @@ export default function HeroSection() {
             className="btn-primary !text-base !px-8 !py-3.5"
             onClick={(e) => handleCTAClick(e, '#contact')}
           >
-            Hablar con el equipo
+            {t('hero.ctaPrimary')}
             <ArrowRight size={18} />
           </a>
           <a
@@ -61,17 +74,13 @@ export default function HeroSection() {
             className="btn-secondary !text-base !px-8 !py-3.5"
             onClick={(e) => handleCTAClick(e, '#services')}
           >
-            Ver soluciones
+            {t('hero.ctaSecondary')}
           </a>
         </div>
 
         {/* Stats */}
         <div className="animate-fade-in-up-delay-3 flex flex-wrap gap-12 justify-center mt-16 pt-12 border-t border-white/10">
-          {[
-            { value: '99.9%', label: 'Uptime garantizado' },
-            { value: '< 200ms', label: 'Latencia API promedio' },
-            { value: '10+', label: 'Sistemas en producción' },
-          ].map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl font-extrabold tracking-tight leading-none mb-1.5 gradient-text-brand">
                 {stat.value}
@@ -90,7 +99,7 @@ export default function HeroSection() {
         onClick={(e) => handleCTAClick(e, '#services')}
         className="animate-float absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--color-text-muted)] flex flex-col items-center gap-1.5 no-underline text-xs font-medium tracking-widest uppercase transition-colors hover:text-[var(--color-text-primary)]"
       >
-        <span>Explorar</span>
+        <span>{t('hero.explore')}</span>
         <ChevronDown size={18} />
       </a>
     </section>

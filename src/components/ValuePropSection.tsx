@@ -1,55 +1,42 @@
 import { Shield, Activity, Layers, CheckCircle2 } from 'lucide-react';
-
-const PILLARS = [
-  {
-    id: 'reliability',
-    icon: Shield,
-    iconColor: '#8F79B3',
-    title: 'Confiabilidad Operativa',
-    description:
-      'Arquitecturas tolerantes a fallos con redundancia activa. Cada sistema se diseña para operar bajo carga sin degradación. Monitoreo proactivo y alertas tempranas antes de que el problema llegue al usuario.',
-    points: [
-      'Uptime 99.9% en producción',
-      'Redundancia y failover automático',
-      'Monitoreo 24/7 con alertas',
-    ],
-  },
-  {
-    id: 'realtime',
-    icon: Activity,
-    iconColor: '#a78bfa',
-    title: 'Datos en Tiempo Real',
-    description:
-      'Sincronización de inventario, ventas y estados operativos en milisegundos. Interfaces que reflejan el estado real del negocio sin demoras, con validación rigurosa que elimina inconsistencias de datos.',
-    points: [
-      'Sincronización < 200ms',
-      'Validación rigurosa en capas',
-      'Cero inconsistencias de estado',
-    ],
-  },
-  {
-    id: 'modular',
-    icon: Layers,
-    iconColor: '#c4b5fd',
-    title: 'Arquitectura Modular',
-    description:
-      'Sistemas que crecen con el negocio. Módulos desacoplados que se integran progresivamente, sin reescrituras costosas. La plataforma de hoy es compatible con los requerimientos de mañana.',
-    points: [
-      'Dominio desacoplado por módulo',
-      'APIs versionadas y documentadas',
-      'Integración incremental sin fricción',
-    ],
-  },
-];
-
-const METHODOLOGY_STEPS = [
-  { step: '01', title: 'Análisis de Dominio', desc: 'Entendemos el negocio antes de escribir una línea de código.' },
-  { step: '02', title: 'Diseño de Arquitectura', desc: 'Proponemos la solución técnica óptima para los requerimientos.' },
-  { step: '03', title: 'Desarrollo Iterativo', desc: 'Entregas frecuentes con validación continua del cliente.' },
-  { step: '04', title: 'Despliegue & Soporte', desc: 'Puesta en producción robusta y acompañamiento post-lanzamiento.' },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function ValuePropSection() {
+  const { t } = useTranslation();
+
+  const pillars = [
+    {
+      id: 'reliability',
+      icon: Shield,
+      iconColor: '#8F79B3',
+      title: t('valueProp.pillars.reliability.title'),
+      description: t('valueProp.pillars.reliability.description'),
+      points: t('valueProp.pillars.reliability.points', { returnObjects: true }) as string[],
+    },
+    {
+      id: 'realtime',
+      icon: Activity,
+      iconColor: '#a78bfa',
+      title: t('valueProp.pillars.realtime.title'),
+      description: t('valueProp.pillars.realtime.description'),
+      points: t('valueProp.pillars.realtime.points', { returnObjects: true }) as string[],
+    },
+    {
+      id: 'modular',
+      icon: Layers,
+      iconColor: '#c4b5fd',
+      title: t('valueProp.pillars.modular.title'),
+      description: t('valueProp.pillars.modular.description'),
+      points: t('valueProp.pillars.modular.points', { returnObjects: true }) as string[],
+    },
+  ];
+
+  const methodologySteps = t('valueProp.steps', { returnObjects: true }) as Array<{
+    step: string;
+    title: string;
+    desc: string;
+  }>;
+
   return (
     <section id="about" className="py-24 px-6 bg-[var(--color-surface)] relative">
       {/* Top divider */}
@@ -59,21 +46,20 @@ export default function ValuePropSection() {
         {/* Header */}
         <div className="text-center mb-18">
           <div className="mb-4">
-            <span className="section-label">Nuestra Metodología</span>
+            <span className="section-label">{t('valueProp.sectionLabel')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-            Ingeniería con{' '}
-            <span className="gradient-text-brand">responsabilidad técnica</span>
+            {t('valueProp.titlePrefix')}{' '}
+            <span className="gradient-text-brand">{t('valueProp.titleHighlight')}</span>
           </h2>
           <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed text-base">
-            Resolvemos requerimientos críticos donde el margen de error es mínimo.
-            Cada decisión técnica está respaldada por experiencia real en sistemas de producción.
+            {t('valueProp.subtitle')}
           </p>
         </div>
 
         {/* Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-          {PILLARS.map((pillar) => {
+          {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
@@ -100,7 +86,7 @@ export default function ValuePropSection() {
                 </p>
 
                 <ul className="list-none p-0 m-0 flex flex-col gap-2">
-                  {pillar.points.map((point) => (
+                  {Array.isArray(pillar.points) && pillar.points.map((point) => (
                     <li
                       key={point}
                       className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]"
@@ -118,11 +104,11 @@ export default function ValuePropSection() {
         {/* Methodology steps */}
         <div className="rounded-[var(--radius-card)] border border-white/10 bg-[rgba(52,25,84,0.08)] p-10 md:p-12">
           <h3 className="text-2xl font-bold tracking-tight text-center mb-10 text-[var(--color-text-primary)]">
-            Cómo trabajamos
+            {t('valueProp.methodologyTitle')}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {METHODOLOGY_STEPS.map((step, index) => (
+            {Array.isArray(methodologySteps) && methodologySteps.map((step, index) => (
               <div
                 key={step.step}
                 id={`methodology-step-${index + 1}`}

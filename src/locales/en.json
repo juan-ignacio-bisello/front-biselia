@@ -1,0 +1,218 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact",
+    "cta": "Request Demo",
+    "openMenu": "Open menu"
+  },
+  "hero": {
+    "badge": "Enterprise Software Engineering",
+    "titlePrefix": "Systems built to",
+    "titleHighlight": "scale",
+    "titleSuffix": "with your business",
+    "description": "We design and build <1>SaaS platforms</1>, enterprise management systems, and custom software for companies demanding precision, <3>zero downtime</3>, and measurable results.",
+    "ctaPrimary": "Talk to the Team",
+    "ctaSecondary": "View Solutions",
+    "stats": {
+      "uptime": {
+        "value": "99.9%",
+        "label": "Guaranteed Uptime"
+      },
+      "latency": {
+        "value": "< 200ms",
+        "label": "Average API Latency"
+      },
+      "production": {
+        "value": "10+",
+        "label": "Systems in Production"
+      }
+    },
+    "explore": "Explore"
+  },
+  "solutions": {
+    "sectionLabel": "Our Solutions",
+    "titlePrefix": "Solutions designed for",
+    "titleHighlight": "real challenges",
+    "subtitle": "Every project begins with a deep understanding of the business. We don't sell generic software — we build systems that solve specific problems with technical precision.",
+    "cta": "Explore Solution",
+    "items": {
+      "erp": {
+        "tag": "Enterprise Management",
+        "title": "ERP & Multi-branch Management Platforms",
+        "description": "Centralized operational control with real-time stock and sales synchronization. Transactional CRM, high-performance operational dashboards, and configurable approval workflows for distributed teams.",
+        "features": [
+          "Real-time multichannel synchronization",
+          "Integrated transactional CRM",
+          "Configurable analytical dashboards",
+          "Point of sale & inventory control"
+        ]
+      },
+      "saas": {
+        "tag": "Vertical SaaS",
+        "title": "SaaS Platform Development",
+        "description": "Multitenant architecture engineered for scale. High-availability cloud infrastructure, CI/CD pipelines, and rollout strategies ensuring seamless operational continuity without downtime.",
+        "features": [
+          "Robust multitenant architecture",
+          "Cloud infrastructure (AWS / GCP)",
+          "High availability & autoscaling",
+          "Integrated onboarding & billing"
+        ]
+      },
+      "custom": {
+        "tag": "Custom Software",
+        "title": "Custom Software Engineering",
+        "description": "Digitalization of complex operational workflows for companies that have outgrown generic off-the-shelf software. From functional specification to production deployment with rigorous data validation.",
+        "features": [
+          "Domain analysis & modeling",
+          "Strongly-typed REST / GraphQL APIs",
+          "Legacy system integrations",
+          "Critical process automation"
+        ]
+      }
+    }
+  },
+  "valueProp": {
+    "sectionLabel": "Our Methodology",
+    "titlePrefix": "Engineering with",
+    "titleHighlight": "technical accountability",
+    "subtitle": "We solve critical requirements where the margin for error is minimal. Every technical decision is backed by real-world production experience.",
+    "pillars": {
+      "reliability": {
+        "title": "Operational Reliability",
+        "description": "Fault-tolerant architectures featuring active redundancy. Each system is designed to handle heavy loads without performance degradation. Proactive monitoring and early alerts before issues reach users.",
+        "points": [
+          "99.9% Production uptime",
+          "Automatic failover & redundancy",
+          "24/7 Monitoring & alerting"
+        ]
+      },
+      "realtime": {
+        "title": "Real-Time Data",
+        "description": "Millisecond-level synchronization of inventory, sales, and operational statuses. Interfaces reflecting real-time business states without delay, backed by strict validation that eliminates data inconsistencies.",
+        "points": [
+          "< 200ms Synchronization",
+          "Strict multi-layer validation",
+          "Zero state inconsistencies"
+        ]
+      },
+      "modular": {
+        "title": "Modular Architecture",
+        "description": "Systems designed to grow alongside your business. Decoupled modules that integrate progressively without costly rewrites. Today's platform remains compatible with tomorrow's requirements.",
+        "points": [
+          "Module-decoupled domain",
+          "Versioned & documented APIs",
+          "Frictionless incremental integration"
+        ]
+      }
+    },
+    "methodologyTitle": "How We Work",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Domain Analysis",
+        "desc": "We understand the business thoroughly before writing a single line of code."
+      },
+      {
+        "step": "02",
+        "title": "Architecture Design",
+        "desc": "We propose the optimal technical solution tailored to your requirements."
+      },
+      {
+        "step": "03",
+        "title": "Iterative Development",
+        "desc": "Frequent milestone deliverables with continuous client feedback."
+      },
+      {
+        "step": "04",
+        "title": "Deployment & Support",
+        "desc": "Robust production release accompanied by post-launch dedicated support."
+      }
+    ]
+  },
+  "contact": {
+    "sectionLabel": "Contact",
+    "titlePrefix": "Tell us about",
+    "titleHighlight": "your project",
+    "subtitle": "Message us directly on WhatsApp for an instant response or complete the email inquiry form below.",
+    "trustPoints": [
+      {
+        "title": "Immediate WhatsApp Response",
+        "desc": "Connect directly with our engineering team without delays."
+      },
+      {
+        "title": "Complimentary Technical Assessment",
+        "desc": "We analyze your case and provide an honest engineering perspective."
+      },
+      {
+        "title": "Proposal in 5 Business Days",
+        "desc": "Detailed estimate complete with scope, architecture, and timeline."
+      },
+      {
+        "title": "Guaranteed Confidentiality",
+        "desc": "We execute an NDA prior to discussing sensitive project details."
+      }
+    ],
+    "whatsappOption": {
+      "title": "Direct WhatsApp Contact",
+      "subtitle": "Recommended Option • Instant Response",
+      "description": "Start a conversation directly with our team without filling out forms.",
+      "unavailable": "WhatsApp temporarily unavailable (environment variable not configured).",
+      "button": "Continue via WhatsApp",
+      "defaultMessage": "Hello Biselia! I am reaching out from your website to inquire about your services."
+    },
+    "divider": "Or send an email",
+    "form": {
+      "title": "Email Inquiry Form",
+      "subtitle": "Fill out the details below to receive a formal project proposal or estimate via email.",
+      "nameLabel": "Name *",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "john@company.com",
+      "companyLabel": "Company *",
+      "companyPlaceholder": "Acme Corp Inc.",
+      "projectTypeLabel": "Project Type *",
+      "projectTypePlaceholder": "Select...",
+      "options": {
+        "saas": "SaaS Platform",
+        "erp": "ERP / Management System",
+        "custom": "Custom Software"
+      },
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Briefly describe your challenge, goals, or project vision...",
+      "submitButton": {
+        "idle": "Send via Email",
+        "loading": "Sending Email...",
+        "success": "Email Sent Successfully"
+      },
+      "privacyNote": "Your information is confidential and will never be shared with third parties.",
+      "errors": {
+        "nameMin": "Name must be at least 2 characters long.",
+        "emailInvalid": "Please enter a valid email address.",
+        "companyRequired": "Company name is required.",
+        "projectTypeRequired": "Please select a project type.",
+        "messageMin": "Message must be at least 10 characters long.",
+        "genericError": "Could not connect to the mail server. Please try again later.",
+        "defaultError": "Error sending email message."
+      }
+    }
+  },
+  "footer": {
+    "description": "Software engineering studio specializing in enterprise management systems, SaaS platforms, and high-complexity custom software.",
+    "sections": {
+      "services": "Services",
+      "company": "Company"
+    },
+    "links": {
+      "erp": "ERP & Multi-branch Management",
+      "saas": "SaaS Platforms",
+      "custom": "Custom Software",
+      "integrations": "Integrations",
+      "about": "About Us",
+      "methodology": "Methodology",
+      "contact": "Contact"
+    },
+    "copyright": "© {{year}} BISELIA. All rights reserved.",
+    "tagline": "Designed and engineered with technical precision."
+  }
+}

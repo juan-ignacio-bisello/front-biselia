@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { ContactFormData, ContactFormErrors, ApiResponse } from '../types/contact.types';
 import { getEnvironments } from '../helpers/getEnvironments';
 
@@ -34,31 +35,37 @@ const RAW_WHATSAPP_NUMBER = (VITE_WHATSAPP_NUMBER as string) || '';
 const CLEAN_WHATSAPP_NUMBER = RAW_WHATSAPP_NUMBER.replace(/\D/g, '');
 const IS_WHATSAPP_AVAILABLE = CLEAN_WHATSAPP_NUMBER.length > 0;
 
-function validateForm(data: ContactFormData): ContactFormErrors {
+function validateForm(data: ContactFormData, t: (key: string) => string): ContactFormErrors {
   const errors: ContactFormErrors = {};
   if (!data.name.trim() || data.name.trim().length < 2) {
-    errors.name = 'El nombre debe tener al menos 2 caracteres.';
+    errors.name = t('contact.form.errors.nameMin');
   }
   if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = 'Ingresa un email válido.';
+    errors.email = t('contact.form.errors.emailInvalid');
   }
   if (!data.company.trim() || data.company.trim().length < 2) {
-    errors.company = 'El nombre de la empresa es requerido.';
+    errors.company = t('contact.form.errors.companyRequired');
   }
   if (!data.projectType) {
-    errors.projectType = 'Selecciona el tipo de proyecto.';
+    errors.projectType = t('contact.form.errors.projectTypeRequired');
   }
   if (!data.message.trim() || data.message.trim().length < 10) {
-    errors.message = 'El mensaje debe tener al menos 10 caracteres.';
+    errors.message = t('contact.form.errors.messageMin');
   }
   return errors;
 }
 
 export default function ContactSection() {
+  const { t } = useTranslation();
   const [form, setForm] = useState<ContactFormData>(EMPTY_FORM);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [apiMessage, setApiMessage] = useState('');
+
+  const trustPoints = t('contact.trustPoints', { returnObjects: true }) as Array<{
+    title: string;
+    desc: string;
+  }>;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -72,14 +79,14 @@ export default function ContactSection() {
 
   const handleWhatsappClick = () => {
     if (!IS_WHATSAPP_AVAILABLE) return;
-    const defaultText = 'Hola Biselia! Me contacto desde la página web para realizar una consulta sobre sus servicios.';
+    const defaultText = t('contact.whatsappOption.defaultMessage');
     const waUrl = `https://wa.me/${CLEAN_WHATSAPP_NUMBER}?text=${encodeURIComponent(defaultText)}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const validationErrors = validateForm(form);
+    const validationErrors = validateForm(form, t);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -100,7 +107,7 @@ export default function ContactSection() {
         setForm(EMPTY_FORM);
       } else {
         setStatus('error');
-        setApiMessage(data.message ?? 'Error al enviar el mensaje.');
+        setApiMessage(data.message ?? t('contact.form.errors.defaultError'));
         if (data.errors) {
           const fieldErrors: ContactFormErrors = {};
           data.errors.forEach(({ field, message }) => {
@@ -113,7 +120,7 @@ export default function ContactSection() {
       }
     } catch {
       setStatus('error');
-      setApiMessage('No se pudo conectar con el servidor de correo. Por favor, inténtalo de nuevo.');
+      setApiMessage(t('contact.form.errors.genericError'));
     }
   };
 
@@ -127,24 +134,19 @@ export default function ContactSection() {
           {/* Left — Info */}
           <div>
             <div className="mb-5">
-              <span className="section-label">Contacto</span>
+              <span className="section-label">{t('contact.sectionLabel')}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-5">
-              Cuéntanos sobre{' '}
-              <span className="gradient-text-brand">tu proyecto</span>
+              {t('contact.titlePrefix')}{' '}
+              <span className="gradient-text-brand">{t('contact.titleHighlight')}</span>
             </h2>
             <p className="text-[var(--color-text-secondary)] leading-relaxed mb-10 text-base">
-              Escríbenos directamente por WhatsApp para una respuesta casi inmediata o completa el formulario de correo a continuación.
+              {t('contact.subtitle')}
             </p>
 
             {/* Trust points */}
             <div className="flex flex-col gap-4">
-              {[
-                { title: 'Respuesta inmediata por WhatsApp', desc: 'Conéctate directamente con nuestro equipo sin demoras.' },
-                { title: 'Evaluación técnica sin cargo', desc: 'Analizamos tu caso y te damos una perspectiva honesta.' },
-                { title: 'Propuesta en 5 días hábiles', desc: 'Presupuesto detallado con alcance y timeline.' },
-                { title: 'Confidencialidad garantizada', desc: 'Firmamos NDA si el proyecto lo requiere.' },
-              ].map((item) => (
+              {Array.isArray(trustPoints) && trustPoints.map((item) => (
                 <div
                   key={item.title}
                   className="flex gap-3.5 p-4 sm:p-5 rounded-[var(--radius-card)] bg-[var(--color-surface)] border border-white/5"
@@ -171,22 +173,22 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[var(--color-text-primary)] m-0">
-                    Contacto Directo por WhatsApp
+                    {t('contact.whatsappOption.title')}
                   </h3>
                   <span className="text-xs text-[#25D366] font-semibold">
-                    Opción recomendada • Respuesta casi inmediata
+                    {t('contact.whatsappOption.subtitle')}
                   </span>
                 </div>
               </div>
 
               <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed m-0">
-                Inicia un chat directamente con nuestro equipo sin necesidad de completar formularios.
+                {t('contact.whatsappOption.description')}
               </p>
 
               {!IS_WHATSAPP_AVAILABLE && (
                 <div className="flex gap-2 items-center bg-yellow-500/10 border border-yellow-500/25 rounded-lg p-3 text-yellow-500 text-xs">
                   <AlertCircle size={15} className="shrink-0" />
-                  <span>WhatsApp no disponible temporalmente (variable de entorno no configurada).</span>
+                  <span>{t('contact.whatsappOption.unavailable')}</span>
                 </div>
               )}
 
@@ -198,7 +200,7 @@ export default function ContactSection() {
                 className="btn-whatsapp-primary"
               >
                 <WhatsAppIcon size={20} />
-                <span>Continuar por WhatsApp</span>
+                <span>{t('contact.whatsappOption.button')}</span>
               </button>
             </div>
 
@@ -206,7 +208,7 @@ export default function ContactSection() {
             <div className="flex items-center gap-4 my-1">
               <div className="flex-1 h-[1px] bg-[var(--color-border-custom)]" />
               <span className="text-xs text-[var(--color-text-muted)] uppercase tracking-wider font-semibold">
-                O envía un correo
+                {t('contact.divider')}
               </span>
               <div className="flex-1 h-[1px] bg-[var(--color-border-custom)]" />
             </div>
@@ -220,10 +222,10 @@ export default function ContactSection() {
             >
               <div>
                 <h3 className="text-base font-bold text-[var(--color-text-primary)] mb-1">
-                  Formulario de Contacto por Correo
+                  {t('contact.form.title')}
                 </h3>
                 <p className="text-xs text-[var(--color-text-muted)] m-0">
-                  Completa los campos para recibir un presupuesto o propuesta formal por email.
+                  {t('contact.form.subtitle')}
                 </p>
               </div>
 
@@ -252,14 +254,16 @@ export default function ContactSection() {
               {/* Row: Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="contact-name" className="input-label">Nombre *</label>
+                  <label htmlFor="contact-name" className="input-label">
+                    {t('contact.form.nameLabel')}
+                  </label>
                   <input
                     id="contact-name"
                     type="text"
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="Juan García"
+                    placeholder={t('contact.form.namePlaceholder')}
                     className={`input-field${errors.name ? ' error' : ''}`}
                     disabled={status === 'loading'}
                     autoComplete="given-name"
@@ -272,14 +276,16 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-email" className="input-label">Email *</label>
+                  <label htmlFor="contact-email" className="input-label">
+                    {t('contact.form.emailLabel')}
+                  </label>
                   <input
                     id="contact-email"
                     type="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="juan@empresa.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                     className={`input-field${errors.email ? ' error' : ''}`}
                     disabled={status === 'loading'}
                     autoComplete="email"
@@ -295,14 +301,16 @@ export default function ContactSection() {
               {/* Row: Company + Project type */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="contact-company" className="input-label">Empresa *</label>
+                  <label htmlFor="contact-company" className="input-label">
+                    {t('contact.form.companyLabel')}
+                  </label>
                   <input
                     id="contact-company"
                     type="text"
                     name="company"
                     value={form.company}
                     onChange={handleChange}
-                    placeholder="Mi Empresa S.A."
+                    placeholder={t('contact.form.companyPlaceholder')}
                     className={`input-field${errors.company ? ' error' : ''}`}
                     disabled={status === 'loading'}
                     autoComplete="organization"
@@ -315,7 +323,9 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-projectType" className="input-label">Tipo de Proyecto *</label>
+                  <label htmlFor="contact-projectType" className="input-label">
+                    {t('contact.form.projectTypeLabel')}
+                  </label>
                   <select
                     id="contact-projectType"
                     name="projectType"
@@ -324,10 +334,10 @@ export default function ContactSection() {
                     className={`input-field cursor-pointer${errors.projectType ? ' error' : ''}`}
                     disabled={status === 'loading'}
                   >
-                    <option value="" disabled>Seleccionar...</option>
-                    <option value="SaaS">Plataforma SaaS</option>
-                    <option value="Sistema de Gestión">Sistema de Gestión / ERP</option>
-                    <option value="Software a Medida">Software a Medida</option>
+                    <option value="" disabled>{t('contact.form.projectTypePlaceholder')}</option>
+                    <option value="SaaS">{t('contact.form.options.saas')}</option>
+                    <option value="Sistema de Gestión">{t('contact.form.options.erp')}</option>
+                    <option value="Software a Medida">{t('contact.form.options.custom')}</option>
                   </select>
                   {errors.projectType && (
                     <span className="text-xs text-[var(--color-error)] mt-1 block">
@@ -340,7 +350,7 @@ export default function ContactSection() {
               {/* Message */}
               <div>
                 <label htmlFor="contact-message" className="input-label">
-                  Mensaje *
+                  {t('contact.form.messageLabel')}
                   <span className="text-[var(--color-text-muted)] font-normal ml-1.5">
                     ({form.message.length}/2000)
                   </span>
@@ -350,7 +360,7 @@ export default function ContactSection() {
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  placeholder="Cuéntanos brevemente el desafío o proyecto que tienes en mente..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   rows={4}
                   maxLength={2000}
                   className={`input-field resize-y min-h-[100px]${errors.message ? ' error' : ''}`}
@@ -373,23 +383,23 @@ export default function ContactSection() {
                 {status === 'loading' ? (
                   <>
                     <Loader size={18} className="animate-spin" />
-                    Enviando Correo...
+                    {t('contact.form.submitButton.loading')}
                   </>
                 ) : status === 'success' ? (
                   <>
                     <CheckCircle size={18} />
-                    Correo Enviado con Éxito
+                    {t('contact.form.submitButton.success')}
                   </>
                 ) : (
                   <>
                     <Mail size={18} />
-                    Enviar por Correo
+                    {t('contact.form.submitButton.idle')}
                   </>
                 )}
               </button>
 
               <p className="text-xs text-[var(--color-text-muted)] text-center leading-relaxed m-0">
-                Tu información es confidencial y no será compartida con terceros.
+                {t('contact.form.privacyNote')}
               </p>
             </form>
           </div>

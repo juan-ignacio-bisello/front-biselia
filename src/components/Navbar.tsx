@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import BrandLogo from '../assets/logo/BrandLogo';
-
-const NAV_LINKS = [
-  { label: 'Servicios', href: '#services' },
-  { label: 'Nosotros', href: '#about' },
-  { label: 'Contacto', href: '#contact' },
-];
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t('nav.services'), href: '#services' },
+    { label: t('nav.about'), href: '#about' },
+    { label: t('nav.contact'), href: '#contact' },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -48,7 +51,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -59,25 +62,31 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            id="navbar-cta"
-            className="btn-primary !px-5 !py-2 !text-sm"
-            onClick={(e) => handleNavClick(e, '#contact')}
-          >
-            Solicitar Demo
-          </a>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <a
+              href="#contact"
+              id="navbar-cta"
+              className="btn-primary !px-5 !py-2 !text-sm"
+              onClick={(e) => handleNavClick(e, '#contact')}
+            >
+              {t('nav.cta')}
+            </a>
+          </div>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          id="mobile-menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-          className="md:hidden bg-transparent border-none text-[var(--color-text-primary)] cursor-pointer p-2 flex items-center"
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile hamburger & switcher */}
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageSwitcher />
+          <button
+            id="mobile-menu-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={t('nav.openMenu')}
+            className="bg-transparent border-none text-[var(--color-text-primary)] cursor-pointer p-2 flex items-center"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -86,7 +95,7 @@ export default function Navbar() {
           id="mobile-menu"
           className="md:hidden bg-[rgba(10,9,16,0.97)] backdrop-blur-xl border-t border-white/10 p-6 flex flex-col gap-5"
         >
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -101,7 +110,7 @@ export default function Navbar() {
             className="btn-primary justify-center"
             onClick={(e) => handleNavClick(e, '#contact')}
           >
-            Solicitar Demo
+            {t('nav.cta')}
           </a>
         </div>
       )}

@@ -1,0 +1,218 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "cta": "Solicitar Demo",
+    "openMenu": "Abrir menú"
+  },
+  "hero": {
+    "badge": "Ingeniería de Software Empresarial",
+    "titlePrefix": "Sistemas que",
+    "titleHighlight": "escalan",
+    "titleSuffix": "con tu empresa",
+    "description": "Diseñamos y construimos <1>plataformas SaaS</1>, sistemas de gestión empresarial y software a medida para empresas que exigen precisión, <3>cero tiempo de inactividad</3> y resultados medibles.",
+    "ctaPrimary": "Hablar con el equipo",
+    "ctaSecondary": "Ver soluciones",
+    "stats": {
+      "uptime": {
+        "value": "99.9%",
+        "label": "Uptime garantizado"
+      },
+      "latency": {
+        "value": "< 200ms",
+        "label": "Latencia API promedio"
+      },
+      "production": {
+        "value": "10+",
+        "label": "Sistemas en producción"
+      }
+    },
+    "explore": "Explorar"
+  },
+  "solutions": {
+    "sectionLabel": "Nuestras Soluciones",
+    "titlePrefix": "Soluciones diseñadas para",
+    "titleHighlight": "desafíos reales",
+    "subtitle": "Cada proyecto parte de un entendimiento profundo del negocio. No vendemos software genérico — construimos sistemas que resuelven problemas específicos con precisión técnica.",
+    "cta": "Consultar solución",
+    "items": {
+      "erp": {
+        "tag": "Gestión Empresarial",
+        "title": "Plataformas ERP & Gestión Multisucursal",
+        "description": "Control centralizado de operaciones con sincronización de stock y ventas en tiempo real. CRM transaccional, paneles operativos de alto rendimiento y flujos de aprobación configurables para equipos distribuidos.",
+        "features": [
+          "Sincronización multicanal en tiempo real",
+          "CRM transaccional integrado",
+          "Paneles analíticos configurables",
+          "Punto de venta y control de stock"
+        ]
+      },
+      "saas": {
+        "tag": "SaaS Vertical",
+        "title": "Desarrollo de Plataformas SaaS",
+        "description": "Arquitectura multitenant diseñada para escalar. Infraestructura en la nube con alta disponibilidad, pipelines de CI/CD y estrategias de rollout que garantizan continuidad operativa sin interrupciones.",
+        "features": [
+          "Arquitectura multitenant robusta",
+          "Infraestructura cloud (AWS / GCP)",
+          "Alta disponibilidad y autoscaling",
+          "Onboarding y billing integrado"
+        ]
+      },
+      "custom": {
+        "tag": "Software a Medida",
+        "title": "Ingeniería de Software a Medida",
+        "description": "Digitalización de flujos operativos complejos para empresas que superaron las limitaciones del software genérico. Desde la especificación funcional hasta el despliegue en producción, con validación rigurosa de datos.",
+        "features": [
+          "Análisis y modelado de dominio",
+          "APIs REST / GraphQL tipadas",
+          "Integraciones con sistemas legados",
+          "Automatización de procesos críticos"
+        ]
+      }
+    }
+  },
+  "valueProp": {
+    "sectionLabel": "Nuestra Metodología",
+    "titlePrefix": "Ingeniería con",
+    "titleHighlight": "responsabilidad técnica",
+    "subtitle": "Resolvemos requerimientos críticos donde el margen de error es mínimo. Cada decisión técnica está respaldada por experiencia real en sistemas de producción.",
+    "pillars": {
+      "reliability": {
+        "title": "Confiabilidad Operativa",
+        "description": "Arquitecturas tolerantes a fallos con redundancia activa. Cada sistema se diseña para operar bajo carga sin degradación. Monitoreo proactivo y alertas tempranas antes de que el problema llegue al usuario.",
+        "points": [
+          "Uptime 99.9% en producción",
+          "Redundancia y failover automático",
+          "Monitoreo 24/7 con alertas"
+        ]
+      },
+      "realtime": {
+        "title": "Datos en Tiempo Real",
+        "description": "Sincronización de inventario, ventas y estados operativos en milisegundos. Interfaces que reflejan el estado real del negocio sin demoras, con validación rigurosa que elimina inconsistencias de datos.",
+        "points": [
+          "Sincronización < 200ms",
+          "Validación rigurosa en capas",
+          "Cero inconsistencias de estado"
+        ]
+      },
+      "modular": {
+        "title": "Arquitectura Modular",
+        "description": "Sistemas que crecen con el negocio. Módulos desacoplados que se integran progresivamente, sin reescrituras costosas. La plataforma de hoy es compatible con los requerimientos de mañana.",
+        "points": [
+          "Dominio desacoplado por módulo",
+          "APIs versionadas y documentadas",
+          "Integración incremental sin fricción"
+        ]
+      }
+    },
+    "methodologyTitle": "Cómo trabajamos",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Análisis de Dominio",
+        "desc": "Entendemos el negocio antes de escribir una línea de código."
+      },
+      {
+        "step": "02",
+        "title": "Diseño de Arquitectura",
+        "desc": "Proponemos la solución técnica óptima para los requerimientos."
+      },
+      {
+        "step": "03",
+        "title": "Desarrollo Iterativo",
+        "desc": "Entregas frecuentes con validación continua del cliente."
+      },
+      {
+        "step": "04",
+        "title": "Despliegue & Soporte",
+        "desc": "Puesta en producción robusta y acompañamiento post-lanzamiento."
+      }
+    ]
+  },
+  "contact": {
+    "sectionLabel": "Contacto",
+    "titlePrefix": "Cuéntanos sobre",
+    "titleHighlight": "tu proyecto",
+    "subtitle": "Escríbenos directamente por WhatsApp para una respuesta casi inmediata o completa el formulario de correo a continuación.",
+    "trustPoints": [
+      {
+        "title": "Respuesta inmediata por WhatsApp",
+        "desc": "Conéctate directamente con nuestro equipo sin demoras."
+      },
+      {
+        "title": "Evaluación técnica sin cargo",
+        "desc": "Analizamos tu caso y te damos una perspectiva honesta."
+      },
+      {
+        "title": "Propuesta en 5 días hábiles",
+        "desc": "Presupuesto detallado con alcance y timeline."
+      },
+      {
+        "title": "Confidencialidad garantizada",
+        "desc": "Firmamos NDA si el proyecto lo requiere."
+      }
+    ],
+    "whatsappOption": {
+      "title": "Contacto Directo por WhatsApp",
+      "subtitle": "Opción recomendada • Respuesta casi inmediata",
+      "description": "Inicia un chat directamente con nuestro equipo sin necesidad de completar formularios.",
+      "unavailable": "WhatsApp no disponible temporalmente (variable de entorno no configurada).",
+      "button": "Continuar por WhatsApp",
+      "defaultMessage": "Hola Biselia! Me contacto desde la página web para realizar una consulta sobre sus servicios."
+    },
+    "divider": "O envía un correo",
+    "form": {
+      "title": "Formulario de Contacto por Correo",
+      "subtitle": "Completa los campos para recibir un presupuesto o propuesta formal por email.",
+      "nameLabel": "Nombre *",
+      "namePlaceholder": "Juan García",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "juan@empresa.com",
+      "companyLabel": "Empresa *",
+      "companyPlaceholder": "Mi Empresa S.A.",
+      "projectTypeLabel": "Tipo de Proyecto *",
+      "projectTypePlaceholder": "Seleccionar...",
+      "options": {
+        "saas": "Plataforma SaaS",
+        "erp": "Sistema de Gestión / ERP",
+        "custom": "Software a Medida"
+      },
+      "messageLabel": "Mensaje *",
+      "messagePlaceholder": "Cuéntanos brevemente el desafío o proyecto que tienes en mente...",
+      "submitButton": {
+        "idle": "Enviar por Correo",
+        "loading": "Enviando Correo...",
+        "success": "Correo Enviado con Éxito"
+      },
+      "privacyNote": "Tu información es confidencial y no será compartida con terceros.",
+      "errors": {
+        "nameMin": "El nombre debe tener al menos 2 caracteres.",
+        "emailInvalid": "Ingresa un email válido.",
+        "companyRequired": "El nombre de la empresa es requerido.",
+        "projectTypeRequired": "Selecciona el tipo de proyecto.",
+        "messageMin": "El mensaje debe tener al menos 10 caracteres.",
+        "genericError": "No se pudo conectar con el servidor de correo. Por favor, inténtalo de nuevo.",
+        "defaultError": "Error al enviar el mensaje."
+      }
+    }
+  },
+  "footer": {
+    "description": "Estudio de ingeniería de software especializado en sistemas de gestión empresarial, plataformas SaaS y soluciones a medida de alta complejidad.",
+    "sections": {
+      "services": "Servicios",
+      "company": "Empresa"
+    },
+    "links": {
+      "erp": "ERP & Gestión Multisucursal",
+      "saas": "Plataformas SaaS",
+      "custom": "Software a Medida",
+      "integrations": "Integraciones",
+      "about": "Nosotros",
+      "methodology": "Metodología",
+      "contact": "Contacto"
+    },
+    "copyright": "© {{year}} BISELIA. Todos los derechos reservados.",
+    "tagline": "Diseñado y desarrollado con precisión técnica."
+  }
+}
