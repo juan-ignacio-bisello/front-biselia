@@ -194,7 +194,8 @@
         "messageMin": "El mensaje debe tener al menos 10 caracteres.",
         "genericError": "No se pudo conectar con el servidor de correo. Por favor, inténtalo de nuevo.",
         "defaultError": "Error al enviar el mensaje."
-      }
+      },
+      "successMessage": "¡Gracias! Recibimos tu consulta y te responderemos a la brevedad."
     }
   },
   "footer": {

@@ -45,7 +45,7 @@ export default function SolutionsSection() {
   return (
     <section id="services" className="py-24 px-6 relative overflow-hidden">
       {/* BG orb */}
-      <div className="orb orb-primary animate-glow-pulse w-[500px] h-[500px] top-[10%] -left-[150px] [animation-delay:1s]" />
+      <div className="orb orb-primary animate-glow-pulse w-125 h-125 top-[10%] -left-37.5 [animation-delay:1s]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -57,7 +57,7 @@ export default function SolutionsSection() {
             {t('solutions.titlePrefix')}{' '}
             <span className="gradient-text-brand">{t('solutions.titleHighlight')}</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed text-base">
+          <p className="text-text-secondary max-w-xl mx-auto leading-relaxed text-base">
             {t('solutions.subtitle')}
           </p>
         </div>
@@ -92,12 +92,12 @@ export default function SolutionsSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold tracking-tight leading-snug text-[var(--color-text-primary)]">
+                <h3 className="text-xl font-bold tracking-tight leading-snug text-text-primary">
                   {sol.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed flex-grow">
+                <p className="text-sm text-text-secondary leading-relaxed grow">
                   {sol.description}
                 </p>
 
@@ -106,7 +106,7 @@ export default function SolutionsSection() {
                   {Array.isArray(sol.features) && sol.features.map((feat) => (
                     <li
                       key={feat}
-                      className="text-sm text-[var(--color-text-secondary)] flex items-center gap-2"
+                      className="text-sm text-text-secondary flex items-center gap-2"
                     >
                       <span
                         className="w-1.5 h-1.5 rounded-full shrink-0"

@@ -1,0 +1,4 @@
+# Copiar a .dev.vars para probar las Pages Functions localmente con wrangler
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+RESEND_FROM_EMAIL=onboarding@resend.dev
+CONTACT_TO_EMAIL=biseliasystem@gmail.com

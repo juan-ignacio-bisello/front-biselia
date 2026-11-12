@@ -9,13 +9,13 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="inline-flex items-center rounded-lg bg-[#13111C] p-1 border border-white/10 text-xs font-medium">
+    <div className="inline-flex items-center rounded-lg bg-surface p-1 border border-white/10 text-xs font-medium">
       <button
         type="button"
         onClick={() => changeLanguage('es')}
         className={`px-2.5 py-1 rounded transition-all duration-200 cursor-pointer ${
           currentLang === 'es'
-            ? 'bg-[#341954] text-white shadow-sm'
+            ? 'bg-brand-primary text-white shadow-sm'
             : 'text-gray-400 hover:text-white'
         }`}
         aria-label="Cambiar a Español"
@@ -27,7 +27,7 @@ export default function LanguageSwitcher() {
         onClick={() => changeLanguage('en')}
         className={`px-2.5 py-1 rounded transition-all duration-200 cursor-pointer ${
           currentLang === 'en'
-            ? 'bg-[#341954] text-white shadow-sm'
+            ? 'bg-brand-primary text-white shadow-sm'
             : 'text-gray-400 hover:text-white'
         }`}
         aria-label="Switch to English"

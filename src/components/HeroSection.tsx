@@ -22,12 +22,12 @@ export default function HeroSection() {
       className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-30 pb-20 overflow-hidden"
     >
       {/* Background orbs */}
-      <div className="orb orb-primary animate-glow-pulse w-[700px] h-[700px] -top-[200px] left-1/2 -translate-x-1/2" />
-      <div className="orb orb-glow animate-glow-pulse w-[500px] h-[500px] bottom-0 -right-[100px] [animation-delay:1.5s]" />
+      <div className="orb orb-primary animate-glow-pulse w-175 h-175 -top-50 left-1/2 -translate-x-1/2" />
+      <div className="orb orb-glow animate-glow-pulse w-125 h-125 bottom-0 -right-25 [animation-delay:1.5s]" />
 
       {/* Grid overlay */}
       <div
-        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,black_30%,transparent_80%)]"
+        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_80%_60%_at_50%_40%,black_30%,transparent_80%)]"
       />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -47,12 +47,12 @@ export default function HeroSection() {
         </h1>
 
         {/* Subheadline */}
-        <p className="animate-fade-in-up-delay-2 text-base sm:text-lg lg:text-xl text-[var(--color-text-secondary)] leading-relaxed max-w-2xl mx-auto mb-10 font-normal">
+        <p className="animate-fade-in-up-delay-2 text-base sm:text-lg lg:text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto mb-10 font-normal">
           <Trans
             i18nKey="hero.description"
             components={{
-              1: <strong className="text-[var(--color-text-primary)] font-semibold" />,
-              3: <strong className="text-[var(--color-text-primary)] font-semibold" />,
+              1: <strong className="text-text-primary font-semibold" />,
+              3: <strong className="text-text-primary font-semibold" />,
             }}
           />
         </p>
@@ -62,7 +62,7 @@ export default function HeroSection() {
           <a
             href="#contact"
             id="hero-cta-primary"
-            className="btn-primary !text-base !px-8 !py-3.5"
+            className="btn-primary text-base! px-8! py-3.5!"
             onClick={(e) => handleCTAClick(e, '#contact')}
           >
             {t('hero.ctaPrimary')}
@@ -71,7 +71,7 @@ export default function HeroSection() {
           <a
             href="#services"
             id="hero-cta-secondary"
-            className="btn-secondary !text-base !px-8 !py-3.5"
+            className="btn-secondary text-base! px-8! py-3.5!"
             onClick={(e) => handleCTAClick(e, '#services')}
           >
             {t('hero.ctaSecondary')}
@@ -85,7 +85,7 @@ export default function HeroSection() {
               <div className="text-3xl font-extrabold tracking-tight leading-none mb-1.5 gradient-text-brand">
                 {stat.value}
               </div>
-              <div className="text-xs text-[var(--color-text-muted)] font-medium">
+              <div className="text-xs text-text-muted font-medium">
                 {stat.label}
               </div>
             </div>
@@ -97,7 +97,7 @@ export default function HeroSection() {
       <a
         href="#services"
         onClick={(e) => handleCTAClick(e, '#services')}
-        className="animate-float absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--color-text-muted)] flex flex-col items-center gap-1.5 no-underline text-xs font-medium tracking-widest uppercase transition-colors hover:text-[var(--color-text-primary)]"
+        className="animate-float absolute bottom-8 left-1/2 -translate-x-1/2 text-text-muted flex flex-col items-center gap-1.5 no-underline text-xs font-medium tracking-widest uppercase transition-colors hover:text-text-primary"
       >
         <span>{t('hero.explore')}</span>
         <ChevronDown size={18} />

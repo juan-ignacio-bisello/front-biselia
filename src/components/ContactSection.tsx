@@ -27,7 +27,18 @@ const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
-const API_URL = 'http://localhost:3001/api/contact';
+// En producción usa la Pages Function del mismo dominio (functions/api/contact.ts).
+// En desarrollo se puede apuntar al backend Express con VITE_API_URL.
+const API_URL = (import.meta.env.VITE_API_URL as string | undefined) || '/api/contact';
+
+// Mapea errores de campo devueltos por la API a textos traducidos.
+const FIELD_ERROR_KEYS: Record<keyof ContactFormErrors, string> = {
+  name: 'contact.form.errors.nameMin',
+  email: 'contact.form.errors.emailInvalid',
+  company: 'contact.form.errors.companyRequired',
+  projectType: 'contact.form.errors.projectTypeRequired',
+  message: 'contact.form.errors.messageMin',
+};
 
 // Read and sanitize WhatsApp number using the getEnvironments helper
 const { VITE_WHATSAPP_NUMBER = '' } = getEnvironments();
@@ -101,18 +112,20 @@ export default function ContactSection() {
         body: JSON.stringify(form),
       });
       const data: ApiResponse = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setStatus('success');
-        setApiMessage(data.message);
+        setApiMessage(t('contact.form.successMessage'));
         setForm(EMPTY_FORM);
       } else {
         setStatus('error');
-        setApiMessage(data.message ?? t('contact.form.errors.defaultError'));
+        setApiMessage(t('contact.form.errors.defaultError'));
         if (data.errors) {
           const fieldErrors: ContactFormErrors = {};
-          data.errors.forEach(({ field, message }) => {
-            if (field in EMPTY_FORM) {
-              fieldErrors[field as keyof ContactFormErrors] = message;
+          data.errors.forEach(({ field }) => {
+            if (field in FIELD_ERROR_KEYS) {
+              fieldErrors[field as keyof ContactFormErrors] = t(
+                FIELD_ERROR_KEYS[field as keyof ContactFormErrors]
+              );
             }
           });
           setErrors(fieldErrors);
@@ -127,7 +140,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
       {/* BG orb */}
-      <div className="orb orb-primary animate-glow-pulse w-[600px] h-[600px] -bottom-[100px] -right-[150px] [animation-delay:0.5s]" />
+      <div className="orb orb-primary animate-glow-pulse w-150 h-150 -bottom-25 -right-37.5 [animation-delay:0.5s]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -140,7 +153,7 @@ export default function ContactSection() {
               {t('contact.titlePrefix')}{' '}
               <span className="gradient-text-brand">{t('contact.titleHighlight')}</span>
             </h2>
-            <p className="text-[var(--color-text-secondary)] leading-relaxed mb-10 text-base">
+            <p className="text-text-secondary leading-relaxed mb-10 text-base">
               {t('contact.subtitle')}
             </p>
 
@@ -149,14 +162,14 @@ export default function ContactSection() {
               {Array.isArray(trustPoints) && trustPoints.map((item) => (
                 <div
                   key={item.title}
-                  className="flex gap-3.5 p-4 sm:p-5 rounded-[var(--radius-card)] bg-[var(--color-surface)] border border-white/5"
+                  className="flex gap-3.5 p-4 sm:p-5 rounded-(--radius-card) bg-surface border border-white/5"
                 >
-                  <div className="w-2 h-2 rounded-full bg-[var(--color-brand-glow)] mt-1.5 shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-brand-glow mt-1.5 shrink-0" />
                   <div>
-                    <div className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">
+                    <div className="text-sm font-semibold text-text-primary mb-1">
                       {item.title}
                     </div>
-                    <div className="text-xs text-[var(--color-text-secondary)]">{item.desc}</div>
+                    <div className="text-xs text-text-secondary">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -168,11 +181,11 @@ export default function ContactSection() {
             {/* ── 1. OPCIÓN PRINCIPAL: WHATSAPP ── */}
             <div className="bg-[rgba(37,211,102,0.04)] border border-[rgba(37,211,102,0.25)] rounded-2xl p-7 sm:p-8 flex flex-col gap-4 shadow-2xl relative overflow-hidden">
               <div className="flex items-center gap-3">
-                <div className="w-[38px] h-[38px] rounded-full bg-[rgba(37,211,102,0.15)] flex items-center justify-center text-[#25D366] shrink-0">
+                <div className="w-9.5 h-9.5 rounded-full bg-[rgba(37,211,102,0.15)] flex items-center justify-center text-[#25D366] shrink-0">
                   <WhatsAppIcon size={22} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[var(--color-text-primary)] m-0">
+                  <h3 className="text-lg font-bold text-text-primary m-0">
                     {t('contact.whatsappOption.title')}
                   </h3>
                   <span className="text-xs text-[#25D366] font-semibold">
@@ -181,7 +194,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed m-0">
+              <p className="text-sm text-text-secondary leading-relaxed m-0">
                 {t('contact.whatsappOption.description')}
               </p>
 
@@ -206,11 +219,11 @@ export default function ContactSection() {
 
             {/* ── SEPARADOR VISUAL ── */}
             <div className="flex items-center gap-4 my-1">
-              <div className="flex-1 h-[1px] bg-[var(--color-border-custom)]" />
-              <span className="text-xs text-[var(--color-text-muted)] uppercase tracking-wider font-semibold">
+              <div className="flex-1 h-px bg-border-custom" />
+              <span className="text-xs text-text-muted uppercase tracking-wider font-semibold">
                 {t('contact.divider')}
               </span>
-              <div className="flex-1 h-[1px] bg-[var(--color-border-custom)]" />
+              <div className="flex-1 h-px bg-border-custom" />
             </div>
 
             {/* ── 2. OPCIÓN SECUNDARIA: FORMULARIO DE MAIL ── */}
@@ -218,13 +231,13 @@ export default function ContactSection() {
               id="contact-email-form"
               onSubmit={handleEmailSubmit}
               noValidate
-              className="bg-[var(--color-surface)] border border-white/10 rounded-2xl p-8 sm:p-9 flex flex-col gap-5"
+              className="bg-surface border border-white/10 rounded-2xl p-8 sm:p-9 flex flex-col gap-5"
             >
               <div>
-                <h3 className="text-base font-bold text-[var(--color-text-primary)] mb-1">
+                <h3 className="text-base font-bold text-text-primary mb-1">
                   {t('contact.form.title')}
                 </h3>
-                <p className="text-xs text-[var(--color-text-muted)] m-0">
+                <p className="text-xs text-text-muted m-0">
                   {t('contact.form.subtitle')}
                 </p>
               </div>
@@ -251,6 +264,18 @@ export default function ContactSection() {
                 </div>
               )}
 
+              {/* Honeypot anti-spam: invisible para personas, los bots lo completan */}
+              <input
+                type="text"
+                name="website"
+                value={form.website ?? ''}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="sr-only"
+              />
+
               {/* Row: Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -269,7 +294,7 @@ export default function ContactSection() {
                     autoComplete="given-name"
                   />
                   {errors.name && (
-                    <span className="text-xs text-[var(--color-error)] mt-1 block">
+                    <span className="text-xs text-error mt-1 block">
                       {errors.name}
                     </span>
                   )}
@@ -291,7 +316,7 @@ export default function ContactSection() {
                     autoComplete="email"
                   />
                   {errors.email && (
-                    <span className="text-xs text-[var(--color-error)] mt-1 block">
+                    <span className="text-xs text-error mt-1 block">
                       {errors.email}
                     </span>
                   )}
@@ -316,7 +341,7 @@ export default function ContactSection() {
                     autoComplete="organization"
                   />
                   {errors.company && (
-                    <span className="text-xs text-[var(--color-error)] mt-1 block">
+                    <span className="text-xs text-error mt-1 block">
                       {errors.company}
                     </span>
                   )}
@@ -340,7 +365,7 @@ export default function ContactSection() {
                     <option value="Software a Medida">{t('contact.form.options.custom')}</option>
                   </select>
                   {errors.projectType && (
-                    <span className="text-xs text-[var(--color-error)] mt-1 block">
+                    <span className="text-xs text-error mt-1 block">
                       {errors.projectType}
                     </span>
                   )}
@@ -351,7 +376,7 @@ export default function ContactSection() {
               <div>
                 <label htmlFor="contact-message" className="input-label">
                   {t('contact.form.messageLabel')}
-                  <span className="text-[var(--color-text-muted)] font-normal ml-1.5">
+                  <span className="text-text-muted font-normal ml-1.5">
                     ({form.message.length}/2000)
                   </span>
                 </label>
@@ -363,11 +388,11 @@ export default function ContactSection() {
                   placeholder={t('contact.form.messagePlaceholder')}
                   rows={4}
                   maxLength={2000}
-                  className={`input-field resize-y min-h-[100px]${errors.message ? ' error' : ''}`}
+                  className={`input-field resize-y min-h-25${errors.message ? ' error' : ''}`}
                   disabled={status === 'loading'}
                 />
                 {errors.message && (
-                  <span className="text-xs text-[var(--color-error)] mt-1 block">
+                  <span className="text-xs text-error mt-1 block">
                     {errors.message}
                   </span>
                 )}
@@ -378,7 +403,7 @@ export default function ContactSection() {
                 id="contact-submit-email"
                 type="submit"
                 disabled={status === 'loading' || status === 'success'}
-                className="btn-secondary justify-center w-full !transform-none opacity-100 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="btn-secondary justify-center w-full transform-none! opacity-100 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {status === 'loading' ? (
                   <>
@@ -398,7 +423,7 @@ export default function ContactSection() {
                 )}
               </button>
 
-              <p className="text-xs text-[var(--color-text-muted)] text-center leading-relaxed m-0">
+              <p className="text-xs text-text-muted text-center leading-relaxed m-0">
                 {t('contact.form.privacyNote')}
               </p>
             </form>

@@ -38,7 +38,7 @@ export default function Navbar() {
         : 'bg-transparent border-b border-transparent'
         }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-17 flex items-center justify-between">
         {/* Logo */}
         <a
           href="#"
@@ -67,7 +67,7 @@ export default function Navbar() {
             <a
               href="#contact"
               id="navbar-cta"
-              className="btn-primary !px-5 !py-2 !text-sm"
+              className="btn-primary px-5! py-2! text-sm!"
               onClick={(e) => handleNavClick(e, '#contact')}
             >
               {t('nav.cta')}
@@ -82,7 +82,7 @@ export default function Navbar() {
             id="mobile-menu-toggle"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={t('nav.openMenu')}
-            className="bg-transparent border-none text-[var(--color-text-primary)] cursor-pointer p-2 flex items-center"
+            className="bg-transparent border-none text-text-primary cursor-pointer p-2 flex items-center"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

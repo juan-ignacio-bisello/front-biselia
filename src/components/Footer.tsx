@@ -41,7 +41,7 @@ export default function Footer() {
   return (
     <footer
       id="footer"
-      className="bg-[var(--color-surface)] border-t border-white/10 pt-16 pb-8 px-6"
+      className="bg-surface border-t border-white/10 pt-16 pb-8 px-6"
     >
       <div className="max-w-7xl mx-auto">
         {/* Top row */}
@@ -56,7 +56,7 @@ export default function Footer() {
             >
               <BrandLogo height={70} />
             </a>
-            <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xs mb-6">
               {t('footer.description')}
             </p>
             {/* Socials */}
@@ -69,7 +69,7 @@ export default function Footer() {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-text-secondary)] no-underline transition-all duration-200 hover:bg-[rgba(143,121,179,0.12)] hover:border-[rgba(143,121,179,0.3)] hover:text-[var(--color-brand-glow)]"
+                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-text-secondary no-underline transition-all duration-200 hover:bg-[rgba(143,121,179,0.12)] hover:border-[rgba(143,121,179,0.3)] hover:text-brand-glow"
                 >
                   <Icon size={16} />
                 </a>
@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
-              <h4 className="text-xs font-bold tracking-widest uppercase text-[var(--color-text-muted)] mb-5">
+              <h4 className="text-xs font-bold tracking-widest uppercase text-text-muted mb-5">
                 {section}
               </h4>
               <ul className="list-none p-0 m-0 flex flex-col gap-3">
@@ -90,7 +90,7 @@ export default function Footer() {
                       href={link.href}
                       id={`footer-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="text-sm text-[var(--color-text-secondary)] no-underline transition-colors hover:text-[var(--color-text-primary)]"
+                      className="text-sm text-text-secondary no-underline transition-colors hover:text-text-primary"
                     >
                       {link.label}
                     </a>
@@ -102,7 +102,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-7 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs text-[var(--color-text-muted)]">
+        <div className="pt-7 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs text-text-muted">
           <p className="m-0">
             {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>

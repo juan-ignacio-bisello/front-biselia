@@ -38,7 +38,7 @@ export default function ValuePropSection() {
   }>;
 
   return (
-    <section id="about" className="py-24 px-6 bg-[var(--color-surface)] relative">
+    <section id="about" className="py-24 px-6 bg-surface relative">
       {/* Top divider */}
       <div className="section-divider absolute top-0 left-0 right-0" />
 
@@ -52,7 +52,7 @@ export default function ValuePropSection() {
             {t('valueProp.titlePrefix')}{' '}
             <span className="gradient-text-brand">{t('valueProp.titleHighlight')}</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed text-base">
+          <p className="text-text-secondary max-w-xl mx-auto leading-relaxed text-base">
             {t('valueProp.subtitle')}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function ValuePropSection() {
               <div
                 key={pillar.id}
                 id={`pillar-${pillar.id}`}
-                className="p-8 rounded-[var(--radius-card)] border border-white/5 bg-[rgba(10,9,16,0.5)] flex flex-col gap-4"
+                className="p-8 rounded-(--radius-card) border border-white/5 bg-[rgba(10,9,16,0.5)] flex flex-col gap-4"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center border"
@@ -77,11 +77,11 @@ export default function ValuePropSection() {
                   <Icon size={24} color={pillar.iconColor} />
                 </div>
 
-                <h3 className="text-lg font-bold tracking-tight text-[var(--color-text-primary)]">
+                <h3 className="text-lg font-bold tracking-tight text-text-primary">
                   {pillar.title}
                 </h3>
 
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed flex-grow">
+                <p className="text-sm text-text-secondary leading-relaxed grow">
                   {pillar.description}
                 </p>
 
@@ -89,7 +89,7 @@ export default function ValuePropSection() {
                   {Array.isArray(pillar.points) && pillar.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]"
+                      className="flex items-center gap-2 text-sm text-text-secondary"
                     >
                       <CheckCircle2 size={14} color={pillar.iconColor} className="shrink-0" />
                       {point}
@@ -102,8 +102,8 @@ export default function ValuePropSection() {
         </div>
 
         {/* Methodology steps */}
-        <div className="rounded-[var(--radius-card)] border border-white/10 bg-[rgba(52,25,84,0.08)] p-10 md:p-12">
-          <h3 className="text-2xl font-bold tracking-tight text-center mb-10 text-[var(--color-text-primary)]">
+        <div className="rounded-(--radius-card) border border-white/10 bg-[rgba(52,25,84,0.08)] p-10 md:p-12">
+          <h3 className="text-2xl font-bold tracking-tight text-center mb-10 text-text-primary">
             {t('valueProp.methodologyTitle')}
           </h3>
 
@@ -114,13 +114,13 @@ export default function ValuePropSection() {
                 id={`methodology-step-${index + 1}`}
                 className="text-center relative"
               >
-                <div className="text-xs font-extrabold tracking-widest text-[var(--color-brand-glow)] mb-3">
+                <div className="text-xs font-extrabold tracking-widest text-brand-glow mb-3">
                   {step.step}
                 </div>
-                <h4 className="text-base font-bold text-[var(--color-text-primary)] mb-2 tracking-tight">
+                <h4 className="text-base font-bold text-text-primary mb-2 tracking-tight">
                   {step.title}
                 </h4>
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {step.desc}
                 </p>
               </div>

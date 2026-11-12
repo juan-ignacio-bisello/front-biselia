@@ -4,6 +4,8 @@ export interface ContactFormData {
   company: string;
   projectType: 'SaaS' | 'Sistema de Gestión' | 'Software a Medida' | '';
   message: string;
+  /** Honeypot anti-spam (debe quedar vacío) */
+  website?: string;
 }
 
 export interface ContactFormErrors {

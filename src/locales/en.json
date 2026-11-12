@@ -194,7 +194,8 @@
         "messageMin": "Message must be at least 10 characters long.",
         "genericError": "Could not connect to the mail server. Please try again later.",
         "defaultError": "Error sending email message."
-      }
+      },
+      "successMessage": "Thanks! We received your inquiry and will get back to you shortly."
     }
   },
   "footer": {
